@@ -6,6 +6,7 @@ const router = Router()
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
 
 router.post('/', async (req: Request, res: Response) => {
+
   const { task_id, user_id, message } = req.body
   const { data: history, error } = await supabase
     .from('messages')
@@ -23,6 +24,7 @@ router.post('/', async (req: Request, res: Response) => {
   try {
     const completion = await openai.chat.completions.create({ model: 'gpt-3.5-turbo', messages })
     const reply = completion.choices[0].message.content || ''
+
     await supabase.from('messages').insert([
       { task_id, user_id, content: message, role: 'user' },
       { task_id, user_id, content: reply, role: 'assistant' }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+
 import ChatMessage from '../../../components/ChatMessage'
 import ChatInput from '../../../components/ChatInput'
 
@@ -36,6 +37,7 @@ export default function TaskPage({ params }: { params: Params }) {
     if (data.role === 'assistant') {
       setMessages((prev) => [...prev, { role: 'assistant', message: data.content }])
     }
+
   }
 
   return (
@@ -45,6 +47,7 @@ export default function TaskPage({ params }: { params: Params }) {
           <ChatMessage key={i} role={m.role} message={m.message} />
         ))}
         <div ref={bottomRef} />
+
       </div>
       <ChatInput onSend={handleSend} />
     </div>
