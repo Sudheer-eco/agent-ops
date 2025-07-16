@@ -7,6 +7,7 @@ import taskSnippets from './api/tasks/[id]/snippets'
 import explain from './api/snippets/explain'
 import label from './api/snippets/label'
 import { authMiddleware } from './middleware'
+
 import fs from 'fs'
 import path from 'path'
 import { supabase } from '../packages/db'
@@ -20,11 +21,14 @@ async function runMigrations() {
   }
 }
 
+
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
 
+
 runMigrations()
+
 
 app.use('/api/auth/login', authLogin)
 app.use(authMiddleware)

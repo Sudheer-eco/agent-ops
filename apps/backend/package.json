@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "ts-node-dev --respawn server.ts",
+    "migrate": "supabase db push",
+    "dev": "npm run migrate && ts-node-dev --respawn server.ts",
+
     "build": "tsc",
     "start": "node dist/server.js"
   },

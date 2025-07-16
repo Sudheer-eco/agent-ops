@@ -18,8 +18,23 @@ export default function LoginPage() {
       return
     }
     setError('')
-    await new Promise((res) => setTimeout(res, 500))
-    router.push('/task/new')
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({ email, password }),
+      })
+      if (res.ok) {
+        router.push('/task/new')
+      } else {
+        const data = await res.json()
+        setError(data.message || 'Login failed')
+      }
+    } catch (err: any) {
+      setError(err.message)
+    }
+
   }
 
   return (
