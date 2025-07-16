@@ -8,9 +8,27 @@ import explain from './api/snippets/explain'
 import label from './api/snippets/label'
 import { authMiddleware } from './middleware'
 
+import fs from 'fs'
+import path from 'path'
+import { supabase } from '../packages/db'
+
+async function runMigrations() {
+  try {
+    const sql = fs.readFileSync(path.resolve(__dirname, '../packages/db/migrations/init.sql'), 'utf8')
+    await supabase.rpc('execute_sql', { sql })
+  } catch (err) {
+    console.error('Migration error', err)
+  }
+}
+
+
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
+
+
+runMigrations()
+
 
 app.use('/api/auth/login', authLogin)
 app.use(authMiddleware)

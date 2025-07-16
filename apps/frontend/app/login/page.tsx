@@ -34,6 +34,7 @@ export default function LoginPage() {
     } catch (err: any) {
       setError(err.message)
     }
+
   }
 
   return (
