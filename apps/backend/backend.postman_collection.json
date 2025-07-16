@@ -1,0 +1,70 @@
+{
+  "info": {
+    "name": "Ecosleek Backend API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": {"raw": "http://localhost:3001/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["api","auth","login"]},
+        "body": {"mode": "raw", "raw": "{\n  \"email\": \"user@ecosleek.in\",\n  \"password\": \"test123\"\n}"}
+      }
+    },
+    {
+      "name": "Save Message",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": {"raw": "http://localhost:3001/api/messages", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["api","messages"]},
+        "body": {"mode": "raw", "raw": "{\n  \"task_id\": \"<task-id>\",\n  \"user_id\": \"<user-id>\",\n  \"content\": \"Hello\",\n  \"role\": \"user\"\n}"}
+      }
+    },
+    {
+      "name": "GPT Chat",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": {"raw": "http://localhost:3001/api/gpt", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["api","gpt"]},
+        "body": {"mode": "raw", "raw": "{\n  \"task_id\": \"<task-id>\",\n  \"user_id\": \"<user-id>\",\n  \"message\": \"Hi\"\n}"}
+      }
+    },
+    {
+      "name": "Get Snippets",
+      "request": {
+        "method": "GET",
+        "url": {"raw": "http://localhost:3001/api/tasks/<id>/snippets", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["api","tasks","<id>","snippets"]}
+      }
+    },
+    {
+      "name": "Explain Snippet",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": {"raw": "http://localhost:3001/api/snippets/explain", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["api","snippets","explain"]},
+        "body": {"mode": "raw", "raw": "{\n  \"code\": \"console.log('Hi')\"\n}"}
+      }
+    },
+    {
+      "name": "Label Snippet",
+      "request": {
+        "method": "POST",
+        "header": [
+          {"key": "Content-Type", "value": "application/json"}
+        ],
+        "url": {"raw": "http://localhost:3001/api/snippets/label", "protocol": "http", "host": ["localhost"], "port": "3001", "path": ["api","snippets","label"]},
+        "body": {"mode": "raw", "raw": "{\n  \"id\": \"<snippet-id>\",\n  \"label\": \"todo\"\n}"}
+      }
+    }
+  ]
+}
