@@ -8,6 +8,7 @@ router.post('/', async (req: Request, res: Response) => {
   const { code } = req.body
   try {
     const completion = await openai.chat.completions.create({
+
       model: 'gpt-3.5-turbo',
       messages: [
         { role: 'system', content: 'You are an AI coding assistant.' },
@@ -15,6 +16,7 @@ router.post('/', async (req: Request, res: Response) => {
       ]
     })
     const explanation = completion.choices[0].message.content || ''
+
     res.json({ explanation })
   } catch (err: any) {
     res.status(500).json({ error: err.message })

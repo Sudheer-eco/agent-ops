@@ -3,6 +3,7 @@ import { Router, Request, Response } from 'express'
 const router = Router()
 
 router.post('/', (req: Request, res: Response) => {
+
   const { email, password } = req.body
   if (!email || !email.endsWith('@ecosleek.in')) {
     return res.status(400).json({ success: false, message: 'Email must end with @ecosleek.in' })

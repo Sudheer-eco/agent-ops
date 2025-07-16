@@ -8,9 +8,11 @@ import explain from './api/snippets/explain'
 import label from './api/snippets/label'
 import { authMiddleware } from './middleware'
 
+
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
+
 
 app.use('/api/auth/login', authLogin)
 app.use(authMiddleware)
